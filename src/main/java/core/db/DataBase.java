@@ -23,8 +23,6 @@ public class DataBase {
     }
 
     public static void updateUser(User user) {
-        System.out.println(user.getUserId());
-        users.remove(user.getUserId());
-        users.put(user.getUserId(), user);
+        users.replace(user.getUserId(), user);
     }
 }

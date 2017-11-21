@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import core.db.DataBase;
 import next.model.User;
@@ -18,8 +19,15 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Object value = session.getAttribute("user");
+        if(value == null) {
+            resp.sendRedirect("/index.jsp");
+        }
+
         RequestDispatcher rd = req.getRequestDispatcher("/user/update.jsp");
-        String userId = req.getParameter("userId");
+        User user = (User)value;
+        String userId = user.getUserId();
 
         req.setAttribute("user", DataBase.findUserById(userId));
         rd.forward(req, resp);
@@ -27,6 +35,12 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Object value = session.getAttribute("user");
+        if(value == null) {
+            resp.sendRedirect("/index.jsp");
+        }
+
         User user = new User(
             req.getParameter("userId"),
             req.getParameter("password"),
