@@ -20,7 +20,7 @@ public class QuestionListController extends AbstractController {
 
 		ModelAndView mv = jsonView();
 		mv.addObject("questionList", questionList);
-		
+
 		return mv;
 	}
 }

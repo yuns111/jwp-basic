@@ -75,4 +75,11 @@ public class QuestionDao {
 
         jdbcTemplate.update(sql, questionId);
     }
+
+    public void updateDeleteAnswer(long questionId) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        String sql = "UPDATE QUESTIONS SET countOfAnswer=countOfAnswer-1 WHERE questionId = ?";
+
+        jdbcTemplate.update(sql, questionId);
+    }
 }

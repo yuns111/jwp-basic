@@ -1,5 +1,6 @@
 // $(".qna-comment").on("click", ".answerWrite input[type=submit]", addAnswer);
 $(".answerWrite input[type=submit]").click(addAnswer);
+$(".qna-comment").on('click', ".form-delete", deleteAnswer);
 
 function addAnswer(e) {
   e.preventDefault();
@@ -14,6 +15,30 @@ function addAnswer(e) {
     error: onError,
     success : onSuccess,
   });
+}
+
+function deleteAnswer(e) {
+  e.preventDefault();
+
+  var deleteBtn = $(this);
+  var queryString = deleteBtn.closest("form").serialize();
+
+  console.log(queryString);
+
+    $.ajax({
+        type : 'post',
+        url : '/api/qna/deleteAnswer',
+        data : queryString,
+        dataType : 'json',
+        error: onError,
+        success : function(json, status) {
+          var result = json.result;
+          if (result.status) {
+              deleteBtn.closest('article').remove();
+          }
+        }
+    });
+
 }
 
 function onSuccess(json, status){

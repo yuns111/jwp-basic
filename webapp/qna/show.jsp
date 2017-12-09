@@ -56,7 +56,7 @@
 						<p class="qna-comment-count"><strong>${question.countOfComment}</strong>개의 의견</p>
 						<div class="qna-comment-slipp-articles">
 							<c:forEach var="answer" items="${answers}">
-							<article class="article">
+							<article class="article" id="answer${answer.answerId}">
 								<div class="article-header">
 									<div class="article-header-thumb">
 										<img src="https://graph.facebook.com/v2.3/1324855987/picture" class="article-author-thumb" alt="">
@@ -72,11 +72,11 @@
 								<div class="article-util">
 									<ul class="article-util-list">
 										<li>
-											<a class="link-modify-article" href="/api/qna/updateAnswer?answerId=5">수정</a>
+											<a class="link-modify-article" href="/api/qna/updateAnswer?answerId=${answer.answerId}">수정</a>
 										</li>
 										<li>
 											<form class="form-delete" action="/api/qna/deleteAnswer" method="POST">
-												<input type="hidden" name="answerId" value="5">
+												<input type="hidden" name="answerId" value=${answer.answerId}>
 												<button type="submit" class="link-delete-article">삭제</button>
 											</form>
 										</li>
