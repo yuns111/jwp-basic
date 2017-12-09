@@ -55,7 +55,7 @@
 					<div class="qna-comment-slipp">
 						<p class="qna-comment-count"><strong>${question.countOfComment}</strong>개의 의견</p>
 						<div class="qna-comment-slipp-articles">
-							<c:forEach var="answer" items="answers">
+							<c:forEach var="answer" items="${answers}">
 							<article class="article">
 								<div class="article-header">
 									<div class="article-header-thumb">
