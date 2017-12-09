@@ -57,6 +57,10 @@ public class Question {
         return countOfComment;
     }
 
+    public void setQuestionId(long questionId) {
+        this.questionId = questionId;
+    }
+
     @Override
     public String toString() {
         return "Question [questionId=" + questionId + ", writer=" + writer + ", title=" + title + ", contents="
