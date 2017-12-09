@@ -21,7 +21,8 @@ public class UpdateFormQuestionController extends AbstractController {
 		long questionId = Long.parseLong(request.getParameter("questionId"));
 		Question question = questionDao.findById(questionId);
 
-		if (!question.getWriter().equals(UserSessionUtils.getUserFromSession(request.getSession()))) {
+		String loginUser = UserSessionUtils.getUserFromSession(request.getSession()).getUserId();
+		if (!question.getWriter().equals(loginUser)) {
 			throw new IllegalStateException("다른 사용자가 쓴 글을 수정할 수 없습니다.");
 		}
 
