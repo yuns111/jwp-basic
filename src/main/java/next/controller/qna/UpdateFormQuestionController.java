@@ -8,9 +8,10 @@ import core.mvc.ModelAndView;
 import next.controller.UserSessionUtils;
 import next.dao.QuestionDao;
 import next.model.Question;
+import next.service.QnaService;
 
 public class UpdateFormQuestionController extends AbstractController {
-	private QuestionDao questionDao = new QuestionDao();
+	private QnaService qnaService = new QnaService();
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,7 +20,7 @@ public class UpdateFormQuestionController extends AbstractController {
 		}
 
 		long questionId = Long.parseLong(request.getParameter("questionId"));
-		Question question = questionDao.findById(questionId);
+		Question question = qnaService.findQuestion(questionId);
 
 		String loginUser = UserSessionUtils.getUserFromSession(request.getSession()).getUserId();
 		if (!question.getWriter().equals(loginUser)) {

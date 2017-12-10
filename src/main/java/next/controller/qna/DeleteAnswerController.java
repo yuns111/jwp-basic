@@ -10,10 +10,10 @@ import next.model.Result;
 import core.jdbc.DataAccessException;
 import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
+import next.service.QnaService;
 
 public class DeleteAnswerController extends AbstractController {
-    private AnswerDao answerDao = new AnswerDao();
-    private QuestionDao questionDao = new QuestionDao();
+    private QnaService qnaService = new QnaService();
 
     @Override
     public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,8 +21,7 @@ public class DeleteAnswerController extends AbstractController {
 
         ModelAndView mav = jsonView();
         try {
-            answerDao.delete(answerId);
-            questionDao.updateDeleteAnswer(answerId);
+            qnaService.deleteAnswer(answerId);
             mav.addObject("result", Result.ok());
         } catch (DataAccessException e) {
             mav.addObject("result", Result.fail(e.getMessage()));

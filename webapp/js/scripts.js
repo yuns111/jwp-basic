@@ -23,8 +23,6 @@ function deleteAnswer(e) {
   var deleteBtn = $(this);
   var queryString = deleteBtn.closest("form").serialize();
 
-  console.log(queryString);
-
     $.ajax({
         type : 'post',
         url : '/api/qna/deleteAnswer',

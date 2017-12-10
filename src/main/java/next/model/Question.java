@@ -15,6 +15,10 @@ public class Question {
 
     private int countOfComment;
 
+    public Question() {
+
+    }
+
     public Question(String writer, String title, String contents) {
         this(0, writer, title, contents, new Date(), 0);
     }
@@ -59,6 +63,26 @@ public class Question {
 
     public void setQuestionId(long questionId) {
         this.questionId = questionId;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setCountOfComment(int countOfComment) {
+        this.countOfComment = countOfComment;
     }
 
     @Override
